@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Update Expense";
+}
+@model SZT_Projekt.ViewModels.UpdateViewModel
+
+<div class="card">
+    <form id="Update" method="post">
+        <div class="card-header">
+            <label>Title:</label>
+            <input class="form-control" value="@Model.ExpenseName.Name" asp-for="Name"/>
+        </div>
+        <div class="card-body">
+            @foreach (var user in Model.Users)
+            {
+                <div class="form-group">
+                    <div class="row m-2">
+                        <label>@user.Name</label>
+                        <input class="form-control" value="@Model.ExpenseName.Expenses.SingleOrDefault(x => x.User.Name == user.Name)?.Paid" pattern="^\d+([,]\d{1,2})?$" name="Paid[@user.Name]"/>
+                    </div>
+                </div>
+            }
+            <input type="hidden" value="@Model.ExpenseNameId" asp-for="ExpenseNameId"/>
+            <div class="row">
+                <button type="submit" class="btn btn-primary m-2">Edit</button>
+                <a type="button" class="btn btn-danger m-2" asp-controller="Home" asp-action="Index">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

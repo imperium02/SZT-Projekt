@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Add Expense";
+}
+@model SZT_Projekt.ViewModels.AddViewModel
+
+<div class="row">
+    <div class="card col-md-8 p-0">
+        <form id="Add" method="post">
+            <div class="card-header">
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input asp-for="Name" class="form-control"/>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach (var user in Model.Paid)
+                {
+                    <div class="form-group">
+                        <div class="row m-2">
+                            <label>@user.Key</label>
+                            <input class="form-control" pattern="^\d+([,]\d{1,2})?$" name="Paid[@user.Key]" value="0,0"/>
+                        </div>
+                    </div>
+                }
+                <button type="submit" class="btn btn-primary">Add expense</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

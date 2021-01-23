@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Computed results";
+}
+@model IEnumerable<Tuple<string, string, decimal>>
+
+<div class="text-center">
+    <h3>Computed transactions</h3>
+    @foreach (var transaction in Model)
+    {
+        <ul class="list-group list-group-horizontal">
+            <li style="margin: 10px" class="col-md-6 list-group-item">@transaction.Item1 -> @transaction.Item2</li>
+            <li style="margin: 10px" class="col-md-4 list-group-item"> @transaction.Item3 zł</li>
+        </ul>
+    }
+</div>
